@@ -2,6 +2,14 @@
 
 emby-updater is a small tool to keep the [Emby media server](https://emby.media/) up to date (even including beta-versions).
 
+## Build Status
+
+**Prod**  
+[![Prod Build pipeline status](https://ci.mischaufen.de/api/v1/teams/emby_updater/pipelines/emby-updater/jobs/build/badge)](https://ci.mischaufen.de/teams/emby_updater/pipelines/emby-updater/jobs/build/builds/)
+
+**Workspace**  
+[![Workspace pipeline status](https://ci.mischaufen.de/api/v1/teams/emby_updater/pipelines/emby-updater/jobs/build/badge)](https://ci.mischaufen.de/teams/emby_updater/pipelines/emby-updater/jobs/build/builds/)
+
 ## Using emby-updater
 
 ### All in one binary
@@ -63,6 +71,7 @@ sudo apt install -y python3 python3-pip python3-apt git build-essential; \
 git clone https://github.com/shokinn/emby-updater.git && \
 cd emby-updater && \
 pip3 install --user -r requirements.txt && \
+pip3 install --user setuptools && \
 pip3 install --user pyinstaller
 ```
 
