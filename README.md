@@ -18,7 +18,7 @@ Thanks to [PyInstaller](https://www.pyinstaller.org/) you can download emby-upda
 
 Just [head over to the releases page](https://github.com/shokinn/emby-updater/releases) and download the binary.
 
-**Currently only Ubuntu 16.04+ (amd64) is supported.**
+**Currently only Ubuntu 18.04+ (amd64) is supported.**
 
 ### Python code for maximum flexibility
 
