@@ -164,7 +164,7 @@ Please try again, this time using 'sudo'.
 Exiting.''', file=sys.stderr)
         sys.exit(1)
 
-    eu_version = "0.7.0"
+    eu_version = "0.7.1"
 
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
