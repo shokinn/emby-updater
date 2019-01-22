@@ -33,7 +33,9 @@ def get_latest_version(releases, allow_prereleases):
     for release in releases:
         for asset in release["assets"]:
             if re.match(".*deb_.*_amd64\.deb", asset["name"]) is not None:
-                if allow_prereleases or not release["prerelease"]:
+                if allow_prereleases and release["prerelease"]:
+                    return release
+                elif not allow_prereleases and not release["prerelease"]:
                     return release
     return None
 
