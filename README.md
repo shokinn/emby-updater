@@ -61,24 +61,4 @@ It's not supported through any official Emby Support.
 emby-updater is proudly presented by Philip 'ShokiNN' Henning <mail@philip-henning.com>.
 ```
 
-## Building binary package
-
-### Setup
-
-```bash
-sudo apt update && \
-sudo apt install -y python3 python3-pip python3-apt git build-essential; \
-git clone https://github.com/shokinn/emby-updater.git && \
-cd emby-updater && \
-pip3 install --user -r requirements.txt && \
-pip3 install --user setuptools && \
-pip3 install --user pyinstaller
-```
-
-### Build binary package
-
-```bash
-pyinstaller --onefile emby-updater.py
-```
-
 emby-updater is licensed under MIT license.
