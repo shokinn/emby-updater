@@ -9,15 +9,12 @@ from pathlib import Path
 from shutil import move
 
 import requests
+from . import version
 
 try:
     import apt
 except ImportError:
     sys.exit("You have to install 'python3-apt' to use this script.\nE.g. 'apt install -y python3-apt'")
-
-version = {}
-with open("version.py") as fp:
-    exec(fp.read(), version)
 
 
 def yes_or_no(question, quiet):
@@ -103,9 +100,9 @@ def self_update(download_path, quiet):
             print("Could not find any releases.")
             sys.exit(1)
 
-        if release_json["tag_name"] > version["__version__"]:
+        if release_json["tag_name"] > version.version:
             print(f'''There is an update available
-Installed version:    {version["__version__"]}
+Installed version:    {version.version}
 Update version:       {release_json["name"]}''')
             if not yes_or_no("Do you want to update?", quiet):
                 print('Update process aborted.', file=sys.stderr)
@@ -196,7 +193,7 @@ emby-updater is proudly presented by Philip 'ShokiNN' Henning <mail@philip-henni
     parser.add_argument('-d', '--download-path', help='Set path for downloaded binaries', default='/tmp',
                         action='store')
     parser.add_argument('--update', help='update the script itself if an update is available', action='store_true')
-    parser.add_argument('--version', action='version', version=f'%(prog)s {version["__version__"]}')
+    parser.add_argument('--version', action='version', version=f'%(prog)s {version.version}')
     parser.add_argument('-y', '--yes',
                         help='automatic yes to prompts. Assume "yes" as answer to all prompts and run '
                              'non-interactively. If an undesirable situation, such as changing a held package or '
@@ -210,5 +207,3 @@ emby-updater is proudly presented by Philip 'ShokiNN' Henning <mail@philip-henni
         updater(args.beta, args.download_path, args.yes)
 
 
-if __name__ == '__main__':
-    main()

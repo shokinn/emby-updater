@@ -32,9 +32,8 @@ git push --tag
 echo "Build distribution files"
 python setup.py sdist bdist_wheel
 
-echo "Build binary package"
-#TODO find out how to build a binary from a python package
-pyinstaller --onefile emby-updater.py
-
 echo "upload to PyPI"
 twine upload dist/*
+
+echo "Build binary package"
+pyinstaller --clean --onefile --name emby-updater embyupdater/__main__.py

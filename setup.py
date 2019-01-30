@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
+from embyupdater import version
 
 
 def readme():
@@ -8,13 +9,9 @@ def readme():
         return fd.read()
 
 
-version = {}
-with open("version.py") as fp:
-    exec(fp.read(), version)
-
 setup(
     name="emby-updater",
-    version=version["__version__"],
+    version=version.version,
     url="https://github.com/shokinn/emby-updater",
     license="MIT",
     author="Philip Henning",
