@@ -7,6 +7,10 @@ sudo apt update && \
 sudo apt install -y python3 python3-pip python3-apt python3-dev git build-essential; \
 git clone git@github.com:shokinn/emby-updater.git && \
 cd emby-updater && \
+read -p 'git email for pushing: ' gitmail && \
+git config user.email "$gitmail" && \
+read -p 'git username for pushing: ' gituser && \
+git config user.name "$gituser" && \
 pip3 install --user -r requirements.txt && \
 pip3 install --user setuptools && \
 pip3 install --user pyinstaller && \
