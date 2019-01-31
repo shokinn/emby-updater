@@ -27,13 +27,43 @@ Grab the Python code, install the dependencies and run or modify it :)
 
 #### Setup
 
+##### with pipsi (recommended)
+
+[Install pipsi](https://github.com/mitsuhiko/pipsi#how-do-i-get-it)
+
+If you run in to the issue that pipsi says that yout virtual environments could not be found
+
+```bash
+FileNotFoundError: [Errno 2] No such file or directory: 'virtualenv': 'virtualenv'
+```
+
+try this fix:
+[No such file or directory: 'virtualenv' when doing pipsi install pew](https://github.com/mitsuhiko/pipsi/issues/125#issuecomment-385222725)
+
+
+```bash
+pipsi install emby-updater
+```
+
+##### with pip in the user environment
+
 ```bash
 sudo apt update && \
-sudo apt install -y python3 python3-pip python3-apt git; \
-git clone https://github.com/shokinn/emby-updater.git && \
-cd emby-updater && \
-pip3 install --user -r requirements.txt
+sudo apt install -y python3 python3-pip python3-apt; \
+pip3 install --user emby-updater
 ```
+
+##### from binary distribution
+
+1. Go to the [latest release page](https://github.com/shokinn/emby-updater/releases/latest).
+2. Download the binary distribution package to `~/Downloads`.
+3. make it executable with `chmod +x ~/Downloads/emby-updater`.
+4. move it to `/usr/local/sbin`.
+
+```bash
+sudo mv ~/Downloads/emby-updater /usr/local/sbin/
+```
+
 
 ### Usage
 

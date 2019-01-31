@@ -25,4 +25,28 @@ Travis will then push the new release to [PyPi](https://pypi.python.org/pypi/emb
 ./release.sh <patch|minor|major>
 ``` 
 
+After building the binary it has to be released manually on github.
+
 ## Manual steps
+
+These steps assumes that you are in the cloned directory
+
+```bash
+bumpversion --tag --commit <patch|minor|major>
+
+git add .bumpversion.cfg
+git add embyupdater/version.py
+git commit --amend --no-edit
+
+#git commit -m "v$(cat .bumpversion.cfg|grep current_version|tr -d ' '|cut -f 2 -d '=')""
+
+git push --tag
+
+python3 setup.py sdist bdist_wheel
+
+twine upload dist/*
+
+pyinstaller --clean --onefile --name emby-updater --distpath pyindist --workpath pyinbuild embyupdater/__main__.py
+```
+
+After building the binary it has to be released manually on github.
