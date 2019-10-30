@@ -17,8 +17,8 @@ setup(
     author="Philip Henning",
     author_email="mail@philip-henning.com",
     description="A little tool to keep your emby media server up to date.",
-    long_description=readme(),
     long_description_content_type="text/markdown",
+    long_description=readme(),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
