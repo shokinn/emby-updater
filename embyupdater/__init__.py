@@ -175,12 +175,6 @@ Update version:       {release_json["name"]}''')
 
 
 def main():
-    if os.geteuid() != 0:
-        print('''You need to have root privileges to run this script.
-Please try again, this time using 'sudo'.
-Exiting.''', file=sys.stderr)
-        sys.exit(1)
-
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description='emby-updater will help you to install Emby (updates) easily.',
@@ -198,6 +192,19 @@ emby-updater is proudly presented by Philip 'ShokiNN' Henning <mail@philip-henni
                              'removing an essential package, occurs then %(prog)s will abort.',
                         action='store_true')
     args = parser.parse_args()
+
+    if os.geteuid() != 0:
+        print('''
+##########
+# You need to have root privileges to run this script.
+# Please try again, this time using 'sudo'.
+##########
+
+''', file=sys.stderr)
+        parser.print_help()
+        print('''
+Exiting.''', file=sys.stderr)
+        sys.exit(1)
 
     if args.update:
         self_update(args.download_path, args.yes)
