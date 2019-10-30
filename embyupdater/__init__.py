@@ -146,7 +146,7 @@ def updater(allow_prereleases, download_path, quiet):
         else:
             print(f'''There is an update available
 Installed version:    {emby_version}
-Update version:       {release_json["name"]}''')
+Available version:    {release_json["name"]}''')
             if not yes_or_no("Do you want to update?", quiet):
                 print('Update process aborted.', file=sys.stderr)
                 sys.exit(1)
@@ -170,7 +170,11 @@ Update version:       {release_json["name"]}''')
         print("Emby update successful installed.")
         sys.exit(0)
     else:
-        print("No update available.")
+        print(f'''
+NO UPDATE AVAILABLE!
+Installed version:    {emby_version}
+Available version:    {release_json["name"]}''')
+
         sys.exit(0)
 
 
