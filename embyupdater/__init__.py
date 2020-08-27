@@ -98,11 +98,10 @@ def self_update(download_path, quiet):
         if release_json is None:
             print("Could not find any releases.")
             sys.exit(1)
-
-        if release_json["tag_name"] > version.version:
+        elif release_json["tag_name"] > version.version:
             print(f'''There is an update available
 Installed version:    {version.version}
-Update version:       {release_json["name"]}''')
+Update version:       {release_json["tag"]} ({release_json["name"]})''')
             if not yes_or_no("Do you want to update?", quiet):
                 print('Update process aborted.', file=sys.stderr)
                 sys.exit(1)
@@ -117,7 +116,10 @@ Update version:       {release_json["name"]}''')
             print("emby-updater tool successful updated.")
             sys.exit(0)
         else:
-            print("No update available.")
+            print(f'''
+            NO UPDATE AVAILABLE!
+            Installed version:    {version.version}
+            Available version:    {release_json["tag"]} ({release_json["name"]})''')
             sys.exit(0)
     else:
         print('''You're using the script version of emby-updater.
