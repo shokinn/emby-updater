@@ -101,7 +101,7 @@ def self_update(download_path, quiet):
         elif release_json["tag_name"] > version.version:
             print(f'''There is an update available
 Installed version:    {version.version}
-Update version:       {release_json["tag"]} ({release_json["name"]})''')
+Update version:       {release_json["tag_name"]} ({release_json["name"]})''')
             if not yes_or_no("Do you want to update?", quiet):
                 print('Update process aborted.', file=sys.stderr)
                 sys.exit(1)
@@ -117,9 +117,9 @@ Update version:       {release_json["tag"]} ({release_json["name"]})''')
             sys.exit(0)
         else:
             print(f'''
-            NO UPDATE AVAILABLE!
-            Installed version:    {version.version}
-            Available version:    {release_json["tag"]} ({release_json["name"]})''')
+NO UPDATE AVAILABLE!
+Installed version:    {version.version}
+Available version:    {release_json["tag_name"]} ({release_json["name"]})''')
             sys.exit(0)
     else:
         print('''You're using the script version of emby-updater.
@@ -150,14 +150,14 @@ def updater(allow_prereleases, download_path, quiet):
             if not allow_prereleases:
                 print(f'''There is an update available
 Installed version:    {emby_version}
-Available version:    {release_json["tag"]}''')
+Available version:    {release_json["tag_name"]}''')
                 if not yes_or_no("Do you want to update?", quiet):
                     print('Update process aborted.', file=sys.stderr)
                     sys.exit(1)
             elif allow_prereleases:
                 print(f'''There is an update available
 Installed version:    {emby_version}
-Available version:    {release_json["tag"]} (beta release)''')
+Available version:    {release_json["tag_name"]} (beta release)''')
                 if not yes_or_no("Do you want to update?", quiet):
                     print('Update process aborted.', file=sys.stderr)
                     sys.exit(1)
@@ -185,12 +185,12 @@ Available version:    {release_json["tag"]} (beta release)''')
             print(f'''
 NO UPDATE AVAILABLE!
 Installed version:    {emby_version}
-Available version:    {release_json["tag"]}''')
+Available version:    {release_json["tag_name"]}''')
         elif allow_prereleases:
             print(f'''
 NO UPDATE AVAILABLE!
 Installed version:    {emby_version}
-Available version:    {release_json["tag"]} (beta release)''')
+Available version:    {release_json["tag_name"]} (beta release)''')
 
         sys.exit(0)
 
