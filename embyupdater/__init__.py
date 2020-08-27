@@ -147,12 +147,20 @@ def updater(allow_prereleases, download_path, quiet):
                 print('Installation of Emby media server aborted.', file=sys.stderr)
                 sys.exit(1)
         else:
-            print(f'''There is an update available
+            if not allow_prereleases:
+                print(f'''There is an update available
 Installed version:    {emby_version}
-Available version:    {release_json["name"]}''')
-            if not yes_or_no("Do you want to update?", quiet):
-                print('Update process aborted.', file=sys.stderr)
-                sys.exit(1)
+Available version:    {release_json["tag"]}''')
+                if not yes_or_no("Do you want to update?", quiet):
+                    print('Update process aborted.', file=sys.stderr)
+                    sys.exit(1)
+            elif allow_prereleases:
+                print(f'''There is an update available
+Installed version:    {emby_version}
+Available version:    {release_json["tag"]} (beta release)''')
+                if not yes_or_no("Do you want to update?", quiet):
+                    print('Update process aborted.', file=sys.stderr)
+                    sys.exit(1)
 
         asset_json = get_asset_json(release_json["assets"])
         download_package(asset_json, download_path)
@@ -173,10 +181,16 @@ Available version:    {release_json["name"]}''')
         print("Emby update successful installed.")
         sys.exit(0)
     else:
-        print(f'''
+        if not allow_prereleases:
+            print(f'''
 NO UPDATE AVAILABLE!
 Installed version:    {emby_version}
-Available version:    {release_json["name"]}''')
+Available version:    {release_json["tag"]}''')
+        elif allow_prereleases:
+            print(f'''
+NO UPDATE AVAILABLE!
+Installed version:    {emby_version}
+Available version:    {release_json["tag"]} (beta release)''')
 
         sys.exit(0)
 
