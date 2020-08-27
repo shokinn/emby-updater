@@ -156,7 +156,7 @@ Available version:    {release_json["name"]}''')
         if emby_version is not None:
             sp.call(["systemctl", "stop", "emby-server.service"])
         deb_file = download_path + "/" + asset_json["name"]
-        sp.call(["sudo", "dpkg", "-i", f"{deb_file}"])
+        sp.call(["dpkg", "-i", f"{deb_file}"])
         os.remove(deb_file)
 
         if not yes_or_no("Do you want to keep Emby Media server running?", quiet):
