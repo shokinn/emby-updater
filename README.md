@@ -2,14 +2,6 @@
 
 emby-updater is a small tool to keep the [Emby media server](https://emby.media/) up to date (even including beta-versions).
 
-## Build Status
-
-**Prod**  
-[![Prod Build pipeline status](https://ci.mischaufen.de/api/v1/teams/emby_updater/pipelines/emby-updater/jobs/build/badge)](https://ci.mischaufen.de/teams/emby_updater/pipelines/emby-updater/jobs/build/builds/)
-
-**Workspace**  
-[![Workspace pipeline status](https://ci.mischaufen.de/api/v1/teams/emby_updater/pipelines/emby-updater/jobs/build/badge)](https://ci.mischaufen.de/teams/emby_updater/pipelines/emby-updater/jobs/build/builds/)
-
 ## Using emby-updater
 
 ### All in one binary
@@ -27,22 +19,12 @@ Grab the Python code, install the dependencies and run or modify it :)
 
 #### Setup
 
-##### with pipsi (recommended)
+##### with pipx (recommended)
 
-[Install pipsi](https://github.com/mitsuhiko/pipsi#how-do-i-get-it)
-
-If you run in to the issue that pipsi says that yout virtual environments could not be found
+[Install pipx](https://github.com/pipxproject/pipx#install-pipx)
 
 ```bash
-FileNotFoundError: [Errno 2] No such file or directory: 'virtualenv': 'virtualenv'
-```
-
-try this fix:
-[No such file or directory: 'virtualenv' when doing pipsi install pew](https://github.com/mitsuhiko/pipsi/issues/125#issuecomment-385222725)
-
-
-```bash
-pipsi install emby-updater
+pipx install emby-updater
 ```
 
 ##### with pip in the user environment

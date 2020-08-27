@@ -124,8 +124,8 @@ Available version:    {release_json["tag_name"]} ({release_json["name"]})''')
     else:
         print('''You're using the script version of emby-updater.
 Please update with your python package manager of choice (some examples below):
-    - pipsi (recommended):
-        `pipsi upgrade emby-updater`
+    - pipx (recommended):
+        `pipx upgrade emby-updater`
         
     - pip:
         `pip install --user --upgrade emby-updater`''')
