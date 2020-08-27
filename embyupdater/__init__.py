@@ -30,10 +30,11 @@ def yes_or_no(question, quiet):
 def get_latest_version(releases, allow_prereleases):
     for release in releases:
         for asset in release["assets"]:
-            if re.match(".*deb_.*_amd64\.deb", asset["name"]) is not None:
-                if allow_prereleases and release["prerelease"]:
+            if allow_prereleases and release["prerelease"]:
+                if re.match(".*deb_.*_amd64\.deb", asset["name"]) is not None:
                     return release
-                elif not allow_prereleases and not release["prerelease"]:
+            elif not allow_prereleases and not release["prerelease"]:
+                if re.match(".*deb_.*_amd64\.deb", asset["name"]) is not None:
                     return release
     return None
 
