@@ -3,8 +3,9 @@
 ## Setup dev environment
 
 ```bash
-sudo apt update && \
-sudo apt install -y python3 python3-pip python3-apt python3-dev git build-essential; \
+apt update && \
+apt install -y python3 python3-pip python3-apt python3-dev git build-essential bash-completion systemctl; \
+source /usr/share/bash-completion/bash_completion && \
 git clone git@github.com:shokinn/emby-updater.git && \
 cd emby-updater && \
 read -p 'git email for pushing: ' gitmail && \
