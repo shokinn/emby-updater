@@ -39,9 +39,9 @@ def get_latest_version(releases, allow_prereleases):
     return None
 
 
-def get_asset_json(assets):
+def get_asset_json(assets, regex):
     for asset in assets:
-        if re.match(".*deb_.*_amd64\.deb", asset["name"]) is not None:
+        if re.match(regex, asset["name"]) is not None:
             return asset
     return None
 
@@ -106,14 +106,16 @@ Update version:       {release_json["tag_name"]} ({release_json["name"]})''')
                 print('Update process aborted.', file=sys.stderr)
                 sys.exit(1)
 
-            asset_json = get_asset_json(release_json["assets"])
+            asset_json = get_asset_json(release_json["assets"], "emby-updater")
             download_package(asset_json, download_path)
-            script_path = os.path.dirname(os.path.realpath(__file__))
-            script_file = Path(__file__)
-            move(download_path + "/" + asset_json["name"], f"{script_path}" + "/" + f"{script_file}")
-            os.chmod(f"{script_path}" + "/" + f"{script_file}", 0o774)
+            script_file = Path(sys.executable)
+            # Use subprocess to call system executables instead of shutils move because the file
+            # which will be overwritten is blocked by running the script itself
+            sp.call(
+                ["mv", download_path + "/" + asset_json["name"], script_file])
+            os.chmod(script_file, 0o774)
 
-            print("emby-updater tool successful updated.")
+            print(f"\nemby-updater successful updated.")
             sys.exit(0)
         else:
             print(f'''
@@ -143,7 +145,8 @@ def updater(allow_prereleases, download_path, quiet):
     if emby_version is None or release_json["tag_name"] > emby_version:
         if emby_version is None:
             if not yes_or_no(
-                    f'Emby media server is not installed.\nDo you want to install Emby ({release_json["name"]})?', quiet):
+                    f'Emby media server is not installed.\nDo you want to install Emby ({release_json["name"]})?',
+                    quiet):
                 print('Installation of Emby media server aborted.', file=sys.stderr)
                 sys.exit(1)
         else:
@@ -162,7 +165,7 @@ Available version:    {release_json["tag_name"]} (beta release)''')
                     print('Update process aborted.', file=sys.stderr)
                     sys.exit(1)
 
-        asset_json = get_asset_json(release_json["assets"])
+        asset_json = get_asset_json(release_json["assets"], ".*deb_.*_amd64\.deb")
         download_package(asset_json, download_path)
         if emby_version is not None:
             sp.call(["systemctl", "stop", "emby-server.service"])
@@ -231,5 +234,3 @@ Exiting.''', file=sys.stderr)
         self_update(args.download_path, args.yes)
     else:
         updater(args.beta, args.download_path, args.yes)
-
-
