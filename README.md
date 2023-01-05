@@ -24,7 +24,10 @@ Grab the Python code, install the dependencies and run or modify it :)
 [Install pipx](https://github.com/pipxproject/pipx#install-pipx)
 
 ```bash
-pipx install emby-updater
+sudo -i
+apt update && \
+  apt install -y python3-apt; \
+  pipx install --system-site-packages emby-updater
 ```
 
 ##### with pip in the user environment
