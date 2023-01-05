@@ -4,13 +4,15 @@ emby-updater is a small tool to keep the [Emby media server](https://emby.media/
 
 ## Using emby-updater
 
-### All in one binary
+### ~~All in one binary~~
 
-Thanks to [PyInstaller](https://www.pyinstaller.org/) you can download emby-updater without to care about any dependencies, because they are inbuilt to the binary. 
+**The binary distribution is DEPRECATED, DON'T USE**
 
-Just [head over to the releases page](https://github.com/shokinn/emby-updater/releases) and download the binary.
+~~Thanks to [PyInstaller](https://www.pyinstaller.org/) you can download emby-updater without to care about any dependencies, because they are inbuilt to the binary.~~ 
 
-**Currently only Ubuntu 18.04+ (amd64) is supported.**
+~~Just [head over to the releases page](https://github.com/shokinn/emby-updater/releases) and download the binary.~~
+
+~~**Currently only Ubuntu 18.04+ (amd64) is supported.**~~
 
 ### Python code for maximum flexibility
 
@@ -40,7 +42,7 @@ pip3 install --user emby-updater
 
 ##### ~~from binary distribution~~
 
-**DEPRECATED DON'T USE**
+**The binary distribution is DEPRECATED, DON'T USE**
 
 ~~1. Go to the [latest release page](https://github.com/shokinn/emby-updater/releases/latest).~~  
 ~~2. Download the binary distribution package to `~/Downloads`.~~  
