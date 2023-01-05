@@ -38,15 +38,17 @@ sudo apt install -y python3 python3-pip python3-apt; \
 pip3 install --user emby-updater
 ```
 
-##### from binary distribution
+##### ~~from binary distribution~~
 
-1. Go to the [latest release page](https://github.com/shokinn/emby-updater/releases/latest).
-2. Download the binary distribution package to `~/Downloads`.
-3. make it executable with `chmod +x ~/Downloads/emby-updater`.
-4. move it to `/usr/local/sbin`.
+**DEPRECATED DON'T USE**
+
+~~1. Go to the [latest release page](https://github.com/shokinn/emby-updater/releases/latest).~~  
+~~2. Download the binary distribution package to `~/Downloads`.~~  
+~~3. make it executable with `chmod +x ~/Downloads/emby-updater`.~~  
+~~4. move it to `/usr/local/sbin`.~~
 
 ```bash
-sudo mv ~/Downloads/emby-updater /usr/local/sbin/
+DEPRECATED -- sudo mv ~/Downloads/emby-updater /usr/local/sbin/
 ```
 
 
