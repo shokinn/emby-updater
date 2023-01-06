@@ -21,6 +21,12 @@ pip3 install --user bumpversion && \
 export PATH=$HOME/.local/bin:$PATH
 ```
 
+## Setup dev pyenv venv
+
+```bash
+pyenv virtualenv --system-site-packages system emby-updater
+```
+
 ## Release new version
 
 To publish a release use bumpversion. This will update the `version.py` and tag the commit.
