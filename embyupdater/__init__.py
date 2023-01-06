@@ -60,6 +60,21 @@ def get_emby_version(pkg_name):
     return versions[0].version
 
 
+def versionCompare(v1, v2):
+    """Method to compare two versions.
+
+    Args:
+        v1 (string): Dot separated version number
+        v2 (string): Dot separated version number
+
+    Returns:
+        bool: Returns True when v1 is higher than v2
+    """
+    v1t = tuple(map(int, (v1.split("."))))
+    v2t = tuple(map(int, (v2.split("."))))
+    return v1t > v2t
+
+
 def download_package(asset, download_path):
     if Path(download_path + "/" + asset["name"]).is_file():
         os.remove(Path(download_path + "/" + asset["name"]))
@@ -98,7 +113,7 @@ def self_update(download_path, quiet):
         if release_json is None:
             print("Could not find any releases.")
             sys.exit(1)
-        elif release_json["tag_name"] > version.version:
+        elif versionCompare(release_json["tag_name"], version.version):
             print(f'''There is an update available
 Installed version:    {version.version}
 Update version:       {release_json["tag_name"]} ({release_json["name"]})''')
@@ -142,7 +157,7 @@ def updater(allow_prereleases, download_path, quiet):
 
     emby_version = get_emby_version("emby-server")
 
-    if emby_version is None or release_json["tag_name"] > emby_version:
+    if emby_version is None or versionCompare(release_json["tag_name"], emby_version):
         if emby_version is None:
             if not yes_or_no(
                     f'Emby media server is not installed.\nDo you want to install Emby ({release_json["name"]})?',
