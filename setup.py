@@ -20,7 +20,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=readme(),
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: MIT License",
@@ -30,6 +30,8 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
         "Topic :: System :: Installation/Setup",
         "Topic :: System :: Software Distribution",
